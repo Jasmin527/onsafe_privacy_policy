@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #3B6FEB;
+    --primary: #4D80FF;
     --primary-light: #EEF3FF;
     --success: #22C55E;
     --danger: #EF4444;
     --text-main: #111827;
     --text-sub: #6B7280;
     --border: #E5E7EB;
-    --bg: #F9FAFB;
+    --bg: #F9FAFB
     --white: #ffffff;
     --radius: 12px;
   }
@@ -180,22 +180,22 @@
       </thead>
       <tbody>
         <tr>
-          <td><span class="tag">필수</span>회원 관리</td>
+          <td>회원 관리</td>
           <td>이름, 이메일, 비밀번호, 생년월일, 성별</td>
           <td>탈퇴 후 30일</td>
         </tr>
         <tr>
-          <td><span class="tag">필수</span>서비스 제공</td>
+          <td>서비스 제공</td>
           <td>이용 기록, 접속 로그, 기기 정보, IP 주소</td>
           <td>탈퇴 후 3개월</td>
         </tr>
         <tr>
-          <td><span class="tag">필수</span>긴급 연락</td>
+          <td>긴급 연락</td>
           <td>보호자 연락처, 긴급 연락처</td>
           <td>탈퇴 후 30일</td>
         </tr>
         <tr>
-          <td><span class="tag optional">선택</span>서비스 개선</td>
+          <td>서비스 개선</td>
           <td>앱 사용 패턴, 설정 값</td>
           <td>탈퇴 후 즉시 삭제</td>
         </tr>
@@ -207,9 +207,9 @@
     <h3>개인정보의 보유 및 파기</h3>
     <p>수집한 개인정보는 목적 달성 후 즉시 파기합니다. 단, 관련 법령에 따라 일정 기간 보존이 필요한 경우 아래와 같이 보관합니다.</p>
     <ul>
-      <li>전자상거래법: 계약·청약철회 기록 — 5년</li>
-      <li>전자상거래법: 소비자 불만·분쟁 처리 기록 — 3년</li>
-      <li>통신비밀보호법: 로그인 기록 — 3개월</li>
+      <li>전자상거래법: 계약·청약철회 기록 (5년)</li>
+      <li>전자상거래법: 소비자 불만·분쟁 처리 기록 (3년)</li>
+      <li>통신비밀보호법: 로그인 기록 (3개월)</li>
     </ul>
   </div>
 
@@ -233,51 +233,6 @@
     <h3>개인정보 보호책임자</h3>
     <p>성명: 홍길동 | 직책: 개인정보 보호책임자<br>이메일: privacy@on-safe.kr<br>전화: 02-0000-0000</p>
   </div>
-
-  <div class="consent-box" id="consentBox">
-    <p class="consent-label">🔐 위 개인정보 수집·이용에 동의하십니까?</p>
-    <div class="consent-options">
-      <button class="consent-btn agree-btn" onclick="setConsent('agree')">✓ 동의합니다</button>
-      <button class="consent-btn disagree-btn" onclick="setConsent('disagree')">✕ 동의하지 않습니다</button>
-    </div>
-    <div class="status-msg" id="statusMsg"></div>
   </div>
-</div>
-
-<div class="bottom-bar">
-  <button class="cta-btn" id="ctaBtn">확인 후 돌아가기</button>
-</div>
-
-<script>
-  let currentConsent = null;
-  function setConsent(type) {
-    currentConsent = type;
-    const box = document.getElementById('consentBox');
-    const agreeBtn = document.querySelector('.agree-btn');
-    const disagreeBtn = document.querySelector('.disagree-btn');
-    const statusMsg = document.getElementById('statusMsg');
-    const ctaBtn = document.getElementById('ctaBtn');
-    agreeBtn.classList.remove('active'); disagreeBtn.classList.remove('active');
-    box.classList.remove('agreed', 'disagreed');
-    statusMsg.classList.remove('show', 'agreed', 'disagreed');
-    if (type === 'agree') {
-      agreeBtn.classList.add('active'); box.classList.add('agreed');
-      statusMsg.textContent = '✓ 개인정보 수집·이용에 동의하셨습니다.';
-      statusMsg.classList.add('show', 'agreed');
-      localStorage.setItem('consent_privacy', 'agree');
-    } else {
-      disagreeBtn.classList.add('active'); box.classList.add('disagreed');
-      statusMsg.textContent = '✕ 동의하지 않으시면 서비스 이용이 제한됩니다.';
-      statusMsg.classList.add('show', 'disagreed');
-      localStorage.setItem('consent_privacy', 'disagree');
-    }
-    ctaBtn.classList.add('active');
-  }
-  document.getElementById('ctaBtn').addEventListener('click', () => {
-    if (currentConsent) { alert(currentConsent === 'agree' ? '개인정보 수집·이용에 동의하셨습니다.' : '동의하지 않으셨습니다.'); history.back(); }
-  });
-  const saved = localStorage.getItem('consent_privacy');
-  if (saved) setConsent(saved);
-</script>
 </body>
 </html>

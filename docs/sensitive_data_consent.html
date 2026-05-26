@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #3B6FEB;
+    --primary: #4D80FF;
     --primary-light: #EEF3FF;
     --success: #22C55E;
     --danger: #EF4444;
@@ -160,24 +160,11 @@
   <p class="section-sub">On-Safe의 안전 모니터링 서비스를 위해 민감정보를 수집합니다.</p>
 
   <div class="warning-banner">
-    <span class="warning-icon">⚠️</span>
+    <span class="warning-icon"></span>
     <div class="warning-text">
       <strong>민감정보 특별 고지</strong><br>
       건강정보 및 위치정보는 개인정보 보호법상 민감정보에 해당합니다.
       별도의 명시적 동의가 필요하며, 동의하지 않으시면 안전 모니터링 기능 이용이 불가합니다.
-    </div>
-  </div>
-
-  <div class="data-type-grid">
-    <div class="data-type-card">
-      <div class="icon">❤️</div>
-      <h4>건강 데이터</h4>
-      <p>심박수, 혈압,<br>활동 패턴, 수면 정보</p>
-    </div>
-    <div class="data-type-card">
-      <div class="icon">📍</div>
-      <h4>위치 데이터</h4>
-      <p>실시간 GPS,<br>이동 경로, 체류 장소</p>
     </div>
   </div>
 
@@ -189,19 +176,19 @@
       </thead>
       <tbody>
         <tr>
-          <td><span class="sensitive-label">건강</span></td>
+          <td>건강</td>
           <td>심박수, 혈압, 산소포화도, 체온</td>
           <td>건강 이상 징후 감지 및 긴급 알림</td>
           <td>1년</td>
         </tr>
         <tr>
-          <td><span class="sensitive-label">활동</span></td>
+          <td>활동</td>
           <td>걸음 수, 낙상 감지, 수면 패턴</td>
           <td>활동 이상 감지 및 안전 확인</td>
           <td>6개월</td>
         </tr>
         <tr>
-          <td><span class="sensitive-label">위치</span></td>
+          <td>위치</td>
           <td>GPS 좌표, 이동 경로</td>
           <td>실시간 위치 공유 및 위험지역 알림</td>
           <td>3개월</td>
@@ -232,54 +219,12 @@
   </div>
 
   <div class="terms-card">
-    <h3>동의 철회 방법</h3>
-    <p>민감정보 처리 동의는 언제든지 철회 가능합니다.<br>
-    <strong>앱 내 마이페이지 → 개인정보 관리 → 민감정보 동의 철회</strong>를 통해 요청하실 수 있습니다. 단, 동의 철회 시 안전 모니터링 관련 기능 이용이 중단됩니다.</p>
+    <h3>민감정보 처리 안내</h3>
+    <p>
+    회사는 안전 모니터링 및 긴급 상황 대응 서비스 제공을 위해 필요한 범위 내에서 민감정보를 처리합니다.<br>
+    해당 정보는 서비스 제공 목적 외의 용도로 사용되지 않습니다.
+    </p>
   </div>
-
-  <div class="consent-box" id="consentBox">
-    <p class="consent-label">🏥 위 민감정보(건강·위치) 처리에 동의하십니까?</p>
-    <div class="consent-options">
-      <button class="consent-btn agree-btn" onclick="setConsent('agree')">✓ 동의합니다</button>
-      <button class="consent-btn disagree-btn" onclick="setConsent('disagree')">✕ 동의하지 않습니다</button>
-    </div>
-    <div class="status-msg" id="statusMsg"></div>
   </div>
-</div>
-
-<div class="bottom-bar">
-  <button class="cta-btn" id="ctaBtn">확인 후 돌아가기</button>
-</div>
-
-<script>
-  let currentConsent = null;
-  function setConsent(type) {
-    currentConsent = type;
-    const box = document.getElementById('consentBox');
-    const agreeBtn = document.querySelector('.agree-btn');
-    const disagreeBtn = document.querySelector('.disagree-btn');
-    const statusMsg = document.getElementById('statusMsg');
-    agreeBtn.classList.remove('active'); disagreeBtn.classList.remove('active');
-    box.classList.remove('agreed', 'disagreed');
-    statusMsg.classList.remove('show', 'agreed', 'disagreed');
-    if (type === 'agree') {
-      agreeBtn.classList.add('active'); box.classList.add('agreed');
-      statusMsg.textContent = '✓ 민감정보 처리에 동의하셨습니다.';
-      statusMsg.classList.add('show', 'agreed');
-      localStorage.setItem('consent_sensitive', 'agree');
-    } else {
-      disagreeBtn.classList.add('active'); box.classList.add('disagreed');
-      statusMsg.textContent = '✕ 동의하지 않으시면 안전 모니터링 기능 이용이 불가합니다.';
-      statusMsg.classList.add('show', 'disagreed');
-      localStorage.setItem('consent_sensitive', 'disagree');
-    }
-    document.getElementById('ctaBtn').classList.add('active');
-  }
-  document.getElementById('ctaBtn').addEventListener('click', () => {
-    if (currentConsent) { alert(currentConsent === 'agree' ? '민감정보 처리에 동의하셨습니다.' : '동의하지 않으셨습니다.'); history.back(); }
-  });
-  const saved = localStorage.getItem('consent_sensitive');
-  if (saved) setConsent(saved);
-</script>
 </body>
 </html>

@@ -8,13 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #3B6FEB;
+    --primary: #4D80FF;
     --primary-light: #EEF3FF;
     --success: #22C55E;
     --success-light: #F0FDF4;
     --danger: #EF4444;
-    --purple: #7C3AED;
-    --purple-light: #F5F3FF;
     --text-main: #111827;
     --text-sub: #6B7280;
     --border: #E5E7EB;
@@ -50,25 +48,6 @@
   .content { flex: 1; padding: 20px 16px; overflow-y: auto; }
   .section-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
   .section-sub { font-size: 13px; color: var(--text-sub); margin-bottom: 20px; line-height: 1.6; }
-
-  /* Benefit Banner */
-  .benefit-banner {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 20px;
-    color: white;
-  }
-  .benefit-banner h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
-  .benefit-list { display: flex; flex-direction: column; gap: 8px; }
-  .benefit-item {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; line-height: 1.5;
-  }
-  .benefit-item .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.6); flex-shrink: 0;
-  }
 
   /* Channel cards */
   .channel-section { margin-bottom: 16px; }
@@ -190,61 +169,23 @@
   <p class="section-title">마케팅 정보 수신 동의</p>
   <p class="section-sub">동의하시면 유용한 서비스 소식과 혜택을 받아보실 수 있습니다.</p>
 
-  <div class="benefit-banner">
-    <h3>🎁 동의 시 제공되는 혜택</h3>
-    <div class="benefit-list">
-      <div class="benefit-item"><div class="dot"></div>신규 기능 및 업데이트 소식 가장 먼저 안내</div>
-      <div class="benefit-item"><div class="dot"></div>이용자 전용 할인 쿠폰 및 프로모션 제공</div>
-      <div class="benefit-item"><div class="dot"></div>안전 관련 건강 정보 및 유용한 팁 제공</div>
-      <div class="benefit-item"><div class="dot"></div>서비스 만족도 조사 참여 시 리워드 제공</div>
-    </div>
+  <div class="terms-card">
+    <h3>동의 시 제공되는 혜택</h3>
+    <ul>
+      <li>신규 기능 및 업데이트 소식 안내 </li>
+      <li>이용자 전용 할인 쿠폰 및 프로모션 제공</li>
+      <li>안전 관련 건강 정보 유용한 팁 제공</li>
+      <li>서비스 만족도 조사 참여 시 리워드 제공</li>
+    </ul>
   </div>
 
-  <div class="optional-note">
-    <strong>✅ 선택 동의 안내</strong><br>
-    마케팅 수신 동의는 선택사항입니다. 동의하지 않으셔도 On-Safe의 모든 핵심 서비스를 동일하게 이용하실 수 있습니다.
-  </div>
-
-  <div class="channel-section">
-    <div class="channel-section-title">수신 채널 선택</div>
-    <div class="channel-grid">
-      <div class="channel-card" id="ch-push" onclick="toggleChannel('push')">
-        <div class="channel-icon">🔔</div>
-        <div class="channel-info">
-          <div class="channel-name">앱 푸시 알림</div>
-          <div class="channel-desc">앱을 통해 실시간으로 소식을 받아보세요</div>
-        </div>
-        <div class="channel-checkbox">
-          <svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="1.5,6 4.5,9 10.5,3"/>
-          </svg>
-        </div>
-      </div>
-      <div class="channel-card" id="ch-sms" onclick="toggleChannel('sms')">
-        <div class="channel-icon">💬</div>
-        <div class="channel-info">
-          <div class="channel-name">SMS / 문자 메시지</div>
-          <div class="channel-desc">중요한 소식을 문자로 받아보세요</div>
-        </div>
-        <div class="channel-checkbox">
-          <svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="1.5,6 4.5,9 10.5,3"/>
-          </svg>
-        </div>
-      </div>
-      <div class="channel-card" id="ch-email" onclick="toggleChannel('email')">
-        <div class="channel-icon">📧</div>
-        <div class="channel-info">
-          <div class="channel-name">이메일</div>
-          <div class="channel-desc">뉴스레터와 상세 안내를 이메일로</div>
-        </div>
-        <div class="channel-checkbox">
-          <svg viewBox="0 0 12 12" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="1.5,6 4.5,9 10.5,3"/>
-          </svg>
-        </div>
-      </div>
-    </div>
+  <div class="terms-card">
+    <h3>수신 채널</h3>
+    <ul>
+      <li>앱 푸시 알림 : 앱을 통해 실시간으로 소식을 받아보세요 </li>
+      <li>SMS / 문자 메시지 : 중요한 소식을 문자로 받아보세요</li>
+      <li>이메일 : 뉴스레터와 상세 안내를 이메일로</li>
+    </ul>
   </div>
 
   <div class="terms-card">
@@ -258,84 +199,11 @@
     <h3>수신 거부 방법</h3>
     <p>마케팅 수신 동의는 언제든지 철회 가능합니다.</p>
     <ul>
-      <li>앱 내: 마이페이지 → 알림 설정 → 마케팅 수신</li>
+      <li>앱 내 : 설정 → 알림 설정 → 마케팅 수신</li>
       <li>이메일 하단의 수신 거부 링크 클릭</li>
-      <li>고객센터 문의: 02-0000-0000</li>
+      <li>고객센터 문의 : 02-0000-0000</li>
     </ul>
   </div>
-
-  <div class="consent-box" id="consentBox">
-    <p class="consent-label">📣 마케팅 정보 수신에 동의하십니까? (선택)</p>
-    <div class="consent-options">
-      <button class="consent-btn agree-btn" onclick="setConsent('agree')">✓ 동의합니다</button>
-      <button class="consent-btn disagree-btn" onclick="setConsent('disagree')">✕ 동의하지 않습니다</button>
-    </div>
-    <div class="status-msg" id="statusMsg"></div>
   </div>
-</div>
-
-<div class="bottom-bar">
-  <button class="cta-btn" onclick="saveAndBack()">확인 후 돌아가기</button>
-  <button class="skip-btn" onclick="skipAndBack()">동의 없이 돌아가기</button>
-</div>
-
-<script>
-  let currentConsent = null;
-  const channels = { push: false, sms: false, email: false };
-
-  function toggleChannel(ch) {
-    channels[ch] = !channels[ch];
-    const card = document.getElementById('ch-' + ch);
-    if (channels[ch]) { card.classList.add('checked'); }
-    else { card.classList.remove('checked'); }
-    localStorage.setItem('marketing_channels', JSON.stringify(channels));
-  }
-
-  function setConsent(type) {
-    currentConsent = type;
-    const box = document.getElementById('consentBox');
-    const agreeBtn = document.querySelector('.agree-btn');
-    const disagreeBtn = document.querySelector('.disagree-btn');
-    const statusMsg = document.getElementById('statusMsg');
-    agreeBtn.classList.remove('active'); disagreeBtn.classList.remove('active');
-    box.classList.remove('agreed', 'disagreed');
-    statusMsg.classList.remove('show', 'agreed', 'disagreed');
-    if (type === 'agree') {
-      agreeBtn.classList.add('active'); box.classList.add('agreed');
-      statusMsg.textContent = '✓ 마케팅 정보 수신에 동의하셨습니다. 유익한 소식을 보내드릴게요!';
-      statusMsg.classList.add('show', 'agreed');
-      localStorage.setItem('consent_marketing', 'agree');
-    } else {
-      disagreeBtn.classList.add('active'); box.classList.add('disagreed');
-      statusMsg.textContent = '서비스 이용에는 영향이 없습니다. 언제든 설정에서 변경하실 수 있습니다.';
-      statusMsg.classList.add('show', 'disagreed');
-      localStorage.setItem('consent_marketing', 'disagree');
-    }
-  }
-
-  function saveAndBack() {
-    const msg = currentConsent === 'agree'
-      ? '마케팅 정보 수신에 동의하셨습니다.'
-      : currentConsent === 'disagree'
-      ? '동의하지 않으셨습니다.'
-      : '선택하지 않고 돌아갑니다.';
-    alert(msg);
-    history.back();
-  }
-
-  function skipAndBack() {
-    localStorage.setItem('consent_marketing', 'disagree');
-    history.back();
-  }
-
-  // 저장된 상태 복원
-  const saved = localStorage.getItem('consent_marketing');
-  if (saved) setConsent(saved);
-  const savedChannels = localStorage.getItem('marketing_channels');
-  if (savedChannels) {
-    const parsed = JSON.parse(savedChannels);
-    Object.keys(parsed).forEach(ch => { if (parsed[ch]) { channels[ch] = true; document.getElementById('ch-' + ch).classList.add('checked'); } });
-  }
-</script>
 </body>
 </html>
