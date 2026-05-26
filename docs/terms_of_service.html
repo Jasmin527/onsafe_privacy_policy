@@ -1,0 +1,372 @@
+<!--1. 이용약관 동의-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이용약관 동의 - On-Safe</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #3B6FEB;
+    --primary-light: #EEF3FF;
+    --success: #22C55E;
+    --danger: #EF4444;
+    --text-main: #111827;
+    --text-sub: #6B7280;
+    --border: #E5E7EB;
+    --bg: #F9FAFB;
+    --white: #ffffff;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    background: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .back-btn {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; background: none; cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+  .back-btn:hover { background: var(--bg); }
+  .back-btn svg { width: 20px; height: 20px; stroke: var(--text-main); }
+
+  .header-title {
+    font-size: 17px;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: #FEE2E2;
+    color: var(--danger);
+  }
+  .badge.required { background: #DBEAFE; color: var(--primary); }
+
+  /* Content */
+  .content {
+    flex: 1;
+    padding: 20px 16px;
+    overflow-y: auto;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .section-sub {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .terms-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .terms-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .terms-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 3px; height: 14px;
+    background: var(--primary);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .terms-card p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #374151;
+  }
+
+  .terms-card ul {
+    margin: 8px 0 0 16px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #374151;
+  }
+
+  /* Consent Box */
+  .consent-box {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 8px;
+    transition: border-color 0.25s;
+  }
+
+  .consent-box.agreed { border-color: var(--success); }
+  .consent-box.disagreed { border-color: var(--danger); }
+
+  .consent-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-main);
+  }
+
+  .consent-options {
+    display: flex;
+    gap: 10px;
+  }
+
+  .consent-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-sub);
+  }
+
+  .consent-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+
+  .consent-btn.agree-btn.active {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+
+  .consent-btn.disagree-btn.active {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+  }
+
+  .status-msg {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .status-msg.show { display: block; }
+  .status-msg.agreed { background: #F0FDF4; color: var(--success); }
+  .status-msg.disagreed { background: #FEF2F2; color: var(--danger); }
+
+  /* Bottom CTA */
+  .bottom-bar {
+    padding: 16px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .cta-btn.active { opacity: 1; pointer-events: all; }
+  .cta-btn.active:hover { background: #2D5BD4; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <button class="back-btn" onclick="history.back()">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <span class="header-title">이용약관 동의</span>
+  <span class="badge required">필수</span>
+</div>
+
+<div class="content">
+  <p class="section-title">On-Safe 이용약관</p>
+  <p class="section-sub">서비스 이용 전 아래 약관을 꼼꼼히 읽어주세요.<br>동의하셔야 서비스를 이용하실 수 있습니다.</p>
+
+  <div class="terms-card">
+    <h3>제1조 (목적)</h3>
+    <p>본 약관은 On-Safe(이하 "회사")가 제공하는 안전 관리 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+  </div>
+
+  <div class="terms-card">
+    <h3>제2조 (정의)</h3>
+    <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+    <ul>
+      <li>"서비스"란 회사가 제공하는 On-Safe 안전 관리 플랫폼을 의미합니다.</li>
+      <li>"이용자"란 본 약관에 동의하고 서비스를 이용하는 자를 의미합니다.</li>
+      <li>"계정"이란 이용자의 식별 및 서비스 이용을 위해 설정한 이메일 및 비밀번호를 의미합니다.</li>
+    </ul>
+  </div>
+
+  <div class="terms-card">
+    <h3>제3조 (약관의 효력 및 변경)</h3>
+    <p>본 약관은 이용자가 동의한 날로부터 효력이 발생합니다. 회사는 관련 법령을 위배하지 않는 범위 내에서 약관을 변경할 수 있으며, 변경 시 7일 전 앱 내 공지를 통해 고지합니다.</p>
+  </div>
+
+  <div class="terms-card">
+    <h3>제4조 (서비스의 제공)</h3>
+    <p>회사는 다음 서비스를 제공합니다.</p>
+    <ul>
+      <li>실시간 위치 기반 안전 모니터링 서비스</li>
+      <li>건강 데이터 수집 및 이상 감지 알림 서비스</li>
+      <li>긴급 상황 시 보호자/관련 기관 연락 서비스</li>
+      <li>안전 이력 기록 및 리포트 제공 서비스</li>
+    </ul>
+  </div>
+
+  <div class="terms-card">
+    <h3>제5조 (이용자의 의무)</h3>
+    <p>이용자는 다음 행위를 하여서는 안 됩니다.</p>
+    <ul>
+      <li>타인의 정보를 도용하거나 허위 정보를 등록하는 행위</li>
+      <li>서비스를 비정상적으로 이용하거나 시스템에 무단 접근하는 행위</li>
+      <li>회사 및 타인의 지식재산권을 침해하는 행위</li>
+    </ul>
+  </div>
+
+  <div class="terms-card">
+    <h3>제6조 (서비스 이용의 제한)</h3>
+    <p>회사는 이용자가 본 약관을 위반하거나 서비스의 정상적인 운영을 방해하는 경우, 사전 통보 없이 서비스 이용을 제한하거나 계정을 정지할 수 있습니다.</p>
+  </div>
+
+  <div class="terms-card">
+    <h3>제7조 (면책조항)</h3>
+    <p>회사는 천재지변, 불가항력, 이용자의 귀책사유로 인한 서비스 장애에 대해서는 책임을 지지 않습니다. 또한 이용자가 서비스를 통해 얻은 정보로 발생한 손해에 대해 회사는 책임을 부담하지 않습니다.</p>
+  </div>
+
+  <div class="terms-card">
+    <h3>제8조 (준거법 및 재판관할)</h3>
+    <p>본 약관과 관련된 분쟁은 대한민국 법률을 준거법으로 하며, 분쟁 발생 시 서울중앙지방법원을 관할법원으로 합니다.</p>
+  </div>
+
+  <!-- Consent -->
+  <div class="consent-box" id="consentBox">
+    <p class="consent-label">📋 위 이용약관에 동의하십니까?</p>
+    <div class="consent-options">
+      <button class="consent-btn agree-btn" id="agreeBtn" onclick="setConsent('agree')">
+        ✓ 동의합니다
+      </button>
+      <button class="consent-btn disagree-btn" id="disagreeBtn" onclick="setConsent('disagree')">
+        ✕ 동의하지 않습니다
+      </button>
+    </div>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <button class="cta-btn" id="ctaBtn">확인 후 돌아가기</button>
+</div>
+
+<script>
+  let currentConsent = null;
+
+  function setConsent(type) {
+    currentConsent = type;
+    const box = document.getElementById('consentBox');
+    const agreeBtn = document.getElementById('agreeBtn');
+    const disagreeBtn = document.getElementById('disagreeBtn');
+    const statusMsg = document.getElementById('statusMsg');
+    const ctaBtn = document.getElementById('ctaBtn');
+
+    agreeBtn.classList.remove('active');
+    disagreeBtn.classList.remove('active');
+    box.classList.remove('agreed', 'disagreed');
+    statusMsg.classList.remove('show', 'agreed', 'disagreed');
+
+    if (type === 'agree') {
+      agreeBtn.classList.add('active');
+      box.classList.add('agreed');
+      statusMsg.textContent = '✓ 이용약관에 동의하셨습니다.';
+      statusMsg.classList.add('show', 'agreed');
+      ctaBtn.classList.add('active');
+      // 로컬스토리지에 저장
+      localStorage.setItem('consent_terms', 'agree');
+    } else {
+      disagreeBtn.classList.add('active');
+      box.classList.add('disagreed');
+      statusMsg.textContent = '✕ 동의하지 않으시면 서비스 이용이 제한됩니다.';
+      statusMsg.classList.add('show', 'disagreed');
+      ctaBtn.classList.add('active');
+      localStorage.setItem('consent_terms', 'disagree');
+    }
+  }
+
+  document.getElementById('ctaBtn').addEventListener('click', () => {
+    if (currentConsent) {
+      alert(currentConsent === 'agree' ? '이용약관에 동의하셨습니다.' : '동의하지 않으셨습니다. 이전 화면으로 돌아갑니다.');
+      history.back();
+    }
+  });
+
+  // 저장된 동의 상태 복원
+  const saved = localStorage.getItem('consent_terms');
+  if (saved) setConsent(saved);
+</script>
+</body>
+</html>
