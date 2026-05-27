@@ -45,17 +45,6 @@
     top: 0;
     z-index: 10;
   }
-
-  .back-btn {
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border: none; background: none; cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.2s;
-  }
-  .back-btn:hover { background: var(--bg); }
-  .back-btn svg { width: 20px; height: 20px; stroke: var(--text-main); }
-
   .header-title {
     font-size: 17px;
     font-weight: 600;
@@ -235,11 +224,6 @@
 <body>
 
 <div class="header">
-  <button class="back-btn" onclick="history.back()">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M15 18l-6-6 6-6"/>
-    </svg>
-  </button>
   <span class="header-title">이용약관 동의</span>
   <span class="badge required">필수</span>
 </div>

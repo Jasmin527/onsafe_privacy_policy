@@ -35,14 +35,6 @@
     border-bottom: 1px solid var(--border);
     position: sticky; top: 0; z-index: 10;
   }
-  .back-btn {
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border: none; background: none; cursor: pointer;
-    border-radius: 50%; transition: background 0.2s;
-  }
-  .back-btn:hover { background: var(--bg); }
-  .back-btn svg { width: 20px; height: 20px; stroke: var(--text-main); }
   .header-title { font-size: 17px; font-weight: 600; flex: 1; text-align: center; }
   .badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; background: #DBEAFE; color: var(--primary); }
 
@@ -149,11 +141,6 @@
 <body>
 
 <div class="header">
-  <button class="back-btn" onclick="history.back()">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M15 18l-6-6 6-6"/>
-    </svg>
-  </button>
   <span class="header-title">개인정보 수집·이용 동의</span>
   <span class="badge">필수</span>
 </div>
