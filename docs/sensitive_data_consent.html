@@ -1,4 +1,4 @@
-<!--3. 민감정보 (건강, 위치) 처리 동의-->
+<!--약관 3. 민감정보 (건강, 위치) 처리 동의-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #3B6FEB;
+    --primary: #4D80FF;
     --primary-light: #EEF3FF;
     --success: #22C55E;
     --danger: #EF4444;
@@ -21,265 +21,243 @@
     --white: #ffffff;
     --radius: 12px;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg); color: var(--text-main);
-    min-height: 100vh; display: flex; flex-direction: column;
-    max-width: 480px; margin: 0 auto;
+    background: #E5E7EB;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
+
+  .app-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+
   .header {
-    background: var(--white); padding: 16px 20px;
-    display: flex; align-items: center; gap: 12px;
+    background: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
+
   .back-btn {
-    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-    border: none; background: none; cursor: pointer; border-radius: 50%; transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-main);
+    flex-shrink: 0;
+    transition: background 0.18s;
+    text-decoration: none;
   }
-  .back-btn:hover { background: var(--bg); }
-  .back-btn svg { width: 20px; height: 20px; stroke: var(--text-main); }
-  .header-title { font-size: 17px; font-weight: 600; flex: 1; text-align: center; }
-  .badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; background: #DBEAFE; color: var(--primary); }
+  .back-btn:hover { background: #F3F4F6; }
+
+  .header-title {
+    font-size: 17px;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: #DBEAFE;
+    color: var(--primary);
+    margin-left: auto;
+  }
 
   .content { flex: 1; padding: 20px 16px; overflow-y: auto; }
 
   .section-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
   .section-sub { font-size: 13px; color: var(--text-sub); margin-bottom: 20px; line-height: 1.6; }
 
-  /* Warning Banner */
   .warning-banner {
     background: var(--warning-light);
     border: 1px solid #FCD34D;
     border-radius: var(--radius);
     padding: 14px 16px;
     margin-bottom: 20px;
-    display: flex; gap: 10px; align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
   }
-  .warning-icon { font-size: 20px; flex-shrink: 0; }
   .warning-text { font-size: 13px; color: #92400E; line-height: 1.65; }
   .warning-text strong { font-weight: 700; }
 
-  /* Data type cards */
-  .data-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-  .data-type-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 14px;
-    text-align: center;
-  }
-  .data-type-card .icon { font-size: 28px; margin-bottom: 8px; }
-  .data-type-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
-  .data-type-card p { font-size: 11px; color: var(--text-sub); line-height: 1.5; }
-
   .terms-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 20px; margin-bottom: 12px; border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
   }
   .terms-card h3 {
-    font-size: 14px; font-weight: 700; margin-bottom: 12px;
-    color: var(--primary); display: flex; align-items: center; gap: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .terms-card h3::before {
-    content: ''; display: inline-block; width: 3px; height: 14px;
-    background: var(--primary); border-radius: 2px; flex-shrink: 0;
+    content: '';
+    display: inline-block;
+    width: 3px; height: 14px;
+    background: var(--primary);
+    border-radius: 2px;
+    flex-shrink: 0;
   }
   .terms-card p { font-size: 13px; line-height: 1.75; color: #374151; }
   .terms-card ul { margin: 8px 0 0 16px; font-size: 13px; line-height: 1.8; color: #374151; }
 
-  .info-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 4px;
+  }
+  .info-table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
   .info-table th {
-    background: #F3F4F6; padding: 10px 8px;
-    text-align: left; font-weight: 600;
-    border: 1px solid var(--border); color: var(--text-sub);
+    background: #F3F4F6;
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    color: var(--text-sub);
+    white-space: nowrap;
   }
-  .info-table td { padding: 10px 8px; border: 1px solid var(--border); color: #374151; line-height: 1.6; vertical-align: top; }
-  .info-table td:first-child { font-weight: 500; color: var(--text-main); white-space: nowrap; }
-
-  .sensitive-label {
-    display: inline-block; font-size: 10px; font-weight: 700;
-    padding: 2px 6px; border-radius: 4px;
-    background: #FEF3C7; color: #D97706; margin-right: 4px;
+  .info-table td {
+    padding: 10px 8px;
+    border: 1px solid var(--border);
+    color: #374151;
+    line-height: 1.6;
+    vertical-align: top;
   }
-
-  .consent-box {
-    background: var(--white); border: 2px solid var(--border);
-    border-radius: var(--radius); padding: 20px; margin-top: 8px;
-    transition: border-color 0.25s;
+  .info-table td:first-child {
+    font-weight: 500;
+    color: var(--text-main);
+    white-space: nowrap;
   }
-  .consent-box.agreed { border-color: var(--success); }
-  .consent-box.disagreed { border-color: var(--danger); }
-  .consent-label { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text-main); }
-  .consent-options { display: flex; gap: 10px; }
-  .consent-btn {
-    flex: 1; padding: 12px; border-radius: 10px;
-    border: 1.5px solid var(--border); background: var(--bg);
-    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    font-family: 'Noto Sans KR', sans-serif; color: var(--text-sub);
-  }
-  .consent-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
-  .consent-btn.agree-btn.active { background: var(--success); border-color: var(--success); color: white; }
-  .consent-btn.disagree-btn.active { background: var(--danger); border-color: var(--danger); color: white; }
-  .status-msg {
-    margin-top: 12px; font-size: 12px; font-weight: 500;
-    text-align: center; padding: 8px; border-radius: 8px; display: none;
-  }
-  .status-msg.show { display: block; }
-  .status-msg.agreed { background: #F0FDF4; color: var(--success); }
-  .status-msg.disagreed { background: #FEF2F2; color: var(--danger); }
-
-  .bottom-bar { padding: 16px; background: var(--white); border-top: 1px solid var(--border); }
-  .cta-btn {
-    width: 100%; padding: 15px; border-radius: var(--radius);
-    border: none; background: var(--primary); color: white;
-    font-size: 15px; font-weight: 700; cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif; transition: all 0.2s;
-    opacity: 0.4; pointer-events: none;
-  }
-  .cta-btn.active { opacity: 1; pointer-events: all; }
-  .cta-btn.active:hover { background: #2D5BD4; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <button class="back-btn" onclick="history.back()">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M15 18l-6-6 6-6"/>
-    </svg>
-  </button>
-  <span class="header-title">민감정보 처리 동의</span>
-  <span class="badge">필수</span>
+<div class="app-container">
+
+  <div class="header">
+    <a class="back-btn" href="index.html" aria-label="뒤로가기">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <span class="header-title">민감정보 처리 동의</span>
+    <span class="badge">필수</span>
+  </div>
+
+  <div class="content">
+    <p class="section-title">건강·위치 데이터 처리 동의</p>
+    <p class="section-sub">On-Safe의 안전 모니터링 서비스를 위해 민감정보를 수집합니다.</p>
+
+    <div class="warning-banner">
+      <div class="warning-text">
+        <strong>⚠️ 민감정보 특별 고지</strong><br>
+        건강정보 및 위치정보는 개인정보 보호법상 민감정보에 해당합니다.
+        별도의 명시적 동의가 필요하며, 동의하지 않으시면 안전 모니터링 기능 이용이 불가합니다.
+      </div>
+    </div>
+
+    <div class="terms-card">
+      <h3>수집 목적 및 항목 상세</h3>
+      <div class="table-wrapper">
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>수집 항목</th>
+              <th>수집 목적</th>
+              <th>보유기간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>활동</td>
+              <td>걸음 수, 낙상 감지, 수면 패턴</td>
+              <td>활동 이상 감지 및 안전 확인</td>
+              <td>6개월</td>
+            </tr>
+            <tr>
+              <td>위치</td>
+              <td>GPS 좌표, 이동 경로</td>
+              <td>실시간 위치 공유 및 위험지역 알림</td>
+              <td>3개월</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="terms-card">
+      <h3>데이터 처리 및 보안</h3>
+      <p>수집된 민감정보는 다음과 같이 안전하게 처리됩니다.</p>
+      <ul>
+        <li>AES-256 암호화 저장 및 전송</li>
+        <li>국내 서버에서만 처리 (해외 전송 없음)</li>
+        <li>접근 권한 최소화 및 접근 이력 관리</li>
+        <li>정기적 보안 취약점 점검 실시</li>
+      </ul>
+    </div>
+
+    <div class="terms-card">
+      <h3>제3자 제공 현황</h3>
+      <p>민감정보는 다음의 경우에 한해 제3자에게 제공될 수 있습니다.</p>
+      <ul>
+        <li>이용자의 명시적 동의가 있는 경우</li>
+        <li>응급 상황 발생 시 119, 병원 등 응급기관에 제공</li>
+        <li>법원의 영장 등 법령에 따른 경우</li>
+      </ul>
+    </div>
+
+    <div class="terms-card">
+      <h3>민감정보 처리 안내</h3>
+      <p>회사는 안전 모니터링 및 긴급 상황 대응 서비스 제공을 위해 필요한 범위 내에서 민감정보를 처리합니다.<br>
+      해당 정보는 서비스 제공 목적 외의 용도로 사용되지 않습니다.</p>
+    </div>
+  </div>
+
 </div>
 
-<div class="content">
-  <p class="section-title">건강·위치 데이터 처리 동의</p>
-  <p class="section-sub">On-Safe의 안전 모니터링 서비스를 위해 민감정보를 수집합니다.</p>
-
-  <div class="warning-banner">
-    <span class="warning-icon">⚠️</span>
-    <div class="warning-text">
-      <strong>민감정보 특별 고지</strong><br>
-      건강정보 및 위치정보는 개인정보 보호법상 민감정보에 해당합니다.
-      별도의 명시적 동의가 필요하며, 동의하지 않으시면 안전 모니터링 기능 이용이 불가합니다.
-    </div>
-  </div>
-
-  <div class="data-type-grid">
-    <div class="data-type-card">
-      <div class="icon">❤️</div>
-      <h4>건강 데이터</h4>
-      <p>심박수, 혈압,<br>활동 패턴, 수면 정보</p>
-    </div>
-    <div class="data-type-card">
-      <div class="icon">📍</div>
-      <h4>위치 데이터</h4>
-      <p>실시간 GPS,<br>이동 경로, 체류 장소</p>
-    </div>
-  </div>
-
-  <div class="terms-card">
-    <h3>수집 목적 및 항목 상세</h3>
-    <table class="info-table">
-      <thead>
-        <tr><th>구분</th><th>수집 항목</th><th>수집 목적</th><th>보유기간</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="sensitive-label">건강</span></td>
-          <td>심박수, 혈압, 산소포화도, 체온</td>
-          <td>건강 이상 징후 감지 및 긴급 알림</td>
-          <td>1년</td>
-        </tr>
-        <tr>
-          <td><span class="sensitive-label">활동</span></td>
-          <td>걸음 수, 낙상 감지, 수면 패턴</td>
-          <td>활동 이상 감지 및 안전 확인</td>
-          <td>6개월</td>
-        </tr>
-        <tr>
-          <td><span class="sensitive-label">위치</span></td>
-          <td>GPS 좌표, 이동 경로</td>
-          <td>실시간 위치 공유 및 위험지역 알림</td>
-          <td>3개월</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="terms-card">
-    <h3>데이터 처리 및 보안</h3>
-    <p>수집된 민감정보는 다음과 같이 안전하게 처리됩니다.</p>
-    <ul>
-      <li>AES-256 암호화 저장 및 전송</li>
-      <li>국내 서버에서만 처리 (해외 전송 없음)</li>
-      <li>접근 권한 최소화 및 접근 이력 관리</li>
-      <li>정기적 보안 취약점 점검 실시</li>
-    </ul>
-  </div>
-
-  <div class="terms-card">
-    <h3>제3자 제공 현황</h3>
-    <p>민감정보는 다음의 경우에 한해 제3자에게 제공될 수 있습니다.</p>
-    <ul>
-      <li>이용자의 명시적 동의가 있는 경우</li>
-      <li>응급 상황 발생 시 119, 병원 등 응급기관에 제공</li>
-      <li>법원의 영장 등 법령에 따른 경우</li>
-    </ul>
-  </div>
-
-  <div class="terms-card">
-    <h3>동의 철회 방법</h3>
-    <p>민감정보 처리 동의는 언제든지 철회 가능합니다.<br>
-    <strong>앱 내 마이페이지 → 개인정보 관리 → 민감정보 동의 철회</strong>를 통해 요청하실 수 있습니다. 단, 동의 철회 시 안전 모니터링 관련 기능 이용이 중단됩니다.</p>
-  </div>
-
-  <div class="consent-box" id="consentBox">
-    <p class="consent-label">🏥 위 민감정보(건강·위치) 처리에 동의하십니까?</p>
-    <div class="consent-options">
-      <button class="consent-btn agree-btn" onclick="setConsent('agree')">✓ 동의합니다</button>
-      <button class="consent-btn disagree-btn" onclick="setConsent('disagree')">✕ 동의하지 않습니다</button>
-    </div>
-    <div class="status-msg" id="statusMsg"></div>
-  </div>
-</div>
-
-<div class="bottom-bar">
-  <button class="cta-btn" id="ctaBtn">확인 후 돌아가기</button>
-</div>
-
-<script>
-  let currentConsent = null;
-  function setConsent(type) {
-    currentConsent = type;
-    const box = document.getElementById('consentBox');
-    const agreeBtn = document.querySelector('.agree-btn');
-    const disagreeBtn = document.querySelector('.disagree-btn');
-    const statusMsg = document.getElementById('statusMsg');
-    agreeBtn.classList.remove('active'); disagreeBtn.classList.remove('active');
-    box.classList.remove('agreed', 'disagreed');
-    statusMsg.classList.remove('show', 'agreed', 'disagreed');
-    if (type === 'agree') {
-      agreeBtn.classList.add('active'); box.classList.add('agreed');
-      statusMsg.textContent = '✓ 민감정보 처리에 동의하셨습니다.';
-      statusMsg.classList.add('show', 'agreed');
-      localStorage.setItem('consent_sensitive', 'agree');
-    } else {
-      disagreeBtn.classList.add('active'); box.classList.add('disagreed');
-      statusMsg.textContent = '✕ 동의하지 않으시면 안전 모니터링 기능 이용이 불가합니다.';
-      statusMsg.classList.add('show', 'disagreed');
-      localStorage.setItem('consent_sensitive', 'disagree');
-    }
-    document.getElementById('ctaBtn').classList.add('active');
-  }
-  document.getElementById('ctaBtn').addEventListener('click', () => {
-    if (currentConsent) { alert(currentConsent === 'agree' ? '민감정보 처리에 동의하셨습니다.' : '동의하지 않으셨습니다.'); history.back(); }
-  });
-  const saved = localStorage.getItem('consent_sensitive');
-  if (saved) setConsent(saved);
-</script>
 </body>
 </html>
