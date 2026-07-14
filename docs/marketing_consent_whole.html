@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마케팅 정보 수신 동의 - On-Safe</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4D80FF;
+    --primary-light: #EEF3FF;
+    --text-main: #111827;
+    --text-sub: #6B7280;
+    --border: #E5E7EB;
+    --bg: #F9FAFB;
+    --white: #ffffff;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #E5E7EB;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .header {
+    background: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-main);
+    flex-shrink: 0;
+    transition: background 0.18s;
+    text-decoration: none;
+  }
+  .back-btn:hover { background: #F3F4F6; }
+
+  .header-title {
+    font-size: 17px;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: #F3F4F6;
+    color: var(--text-sub);
+    margin-left: auto;
+  }
+
+  .content {
+    flex: 1;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .section-sub {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+
+  .terms-scroll-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    height: 50vh;
+    min-height: 280px;
+    max-height: 460px;
+    overflow-y: scroll;
+    font-size: 13px;
+    line-height: 1.85;
+    color: #374151;
+  }
+
+  .terms-scroll-box p { margin-bottom: 8px; }
+  .terms-scroll-box ol { margin: 6px 0 12px 18px; }
+  .terms-scroll-box ol li { margin-bottom: 4px; }
+
+  .terms-scroll-box strong {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--primary);
+  }
+  .terms-scroll-box strong:first-child { margin-top: 0; }
+
+  .terms-scroll-box .addendum {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-sub);
+  }
+  .terms-scroll-box .addendum strong {
+    color: var(--text-sub);
+    font-size: 13px;
+    margin-top: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="header">
+    <a class="back-btn" href="index.html" aria-label="뒤로가기">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <span class="header-title">마케팅 정보 수신 동의</span>
+    <span class="badge">선택</span>
+  </div>
+
+  <div class="content">
+    <div>
+      <p class="section-title">마케팅 정보 수신 동의</p>
+      <p class="section-sub">동의하시면 유용한 서비스 소식과 혜택을 받아보실 수 있습니다.</p>
+    </div>
+
+    <div class="terms-scroll-box">
+
+      <strong>제1조 (목적 및 법적 근거)</strong>
+      <p>회사는 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제50조에 따라 이용자의 사전 동의를 받아 마케팅 정보를 전송합니다. 본 동의는 선택 사항으로, 동의하지 않으셔도 기본 서비스 이용에는 제한이 없습니다.</p>
+
+      <strong>제2조 (수집·이용 목적 및 항목)</strong>
+      <p>① 목적: 신규 서비스 안내, 이벤트 및 프로모션 정보 제공, 서비스 만족도 조사</p>
+      <p>② 수집 항목: 이름, 이메일 주소, 전화번호, 서비스 이용 이력</p>
+      <p>③ 보유기간: 동의 철회 시까지 (최대 2년, 이후 재동의 필요)</p>
+
+      <strong>제3조 (수신 채널)</strong>
+      <p>회사는 다음 채널을 통해 마케팅 정보를 전송합니다.</p>
+      <ol>
+        <li>앱 푸시 알림: 앱을 통한 실시간 소식 안내</li>
+        <li>SMS / 문자 메시지: 주요 이벤트 및 혜택 안내</li>
+        <li>이메일: 뉴스레터 및 상세 서비스 안내</li>
+      </ol>
+
+      <strong>제4조 (동의 시 제공되는 혜택)</strong>
+      <p>마케팅 수신에 동의하신 경우 다음과 같은 혜택을 받으실 수 있습니다.</p>
+      <ol>
+        <li>신규 기능 및 업데이트 소식 우선 안내</li>
+        <li>이용자 전용 할인 쿠폰 및 프로모션 제공</li>
+        <li>안전 관련 건강 정보 및 유용한 팁 제공</li>
+        <li>서비스 만족도 조사 참여 시 리워드 제공</li>
+      </ol>
+
+      <strong>제5조 (동의 철회 방법)</strong>
+      <p>① 마케팅 수신 동의는 언제든지 철회 가능하며, 철회 후에는 마케팅 정보 전송이 중단됩니다.</p>
+      <p>② 동의 철회 방법은 다음과 같습니다.</p>
+      <ol>
+        <li>앱 내: 설정 → 개인정보수정 → 마케팅 수신 비활성화</li>
+        <li>이메일 하단의 수신 거부 링크 클릭</li>
+        <li>고객센터 전화 문의: 02-0000-0000</li>
+      </ol>
+
+      <strong>제6조 (미동의 시 불이익 없음)</strong>
+      <p>마케팅 수신에 동의하지 않으시더라도 On-Safe의 기본 안전 모니터링 서비스 이용에는 어떠한 불이익도 발생하지 않습니다.</p>
+
+      <div class="addendum">
+        <strong>부칙</strong>
+        <p>본 동의서는 2026년 1월 1일부터 시행합니다.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
